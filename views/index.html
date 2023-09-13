@@ -4,12 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+
     <title>Atividade 8</title>
   </head>
   <body>
     <form
-      action="http://127.0.0.1:3000/createPost"
-      method="post"
+      id="form"
+      action="http://127.0.0.1:3000/create"
+      method="get"
       style="border: 1px solid #ccc"
     >
       <div class="container">
@@ -44,10 +46,15 @@
         />
 
         <div class="clearfix">
-          <button type="submit" class="getbtn">Salvar com GET</button>
-          <button type="submit" class="postbtn">Salvar com POST</button>
+          <button type="submit" class="getbtn" id="getbtn">
+            Salvar com GET
+          </button>
+          <button type="submit" class="postbtn" id="postbtn">
+            Salvar com POST
+          </button>
         </div>
       </div>
     </form>
+    <script src="index.js"></script>
   </body>
 </html>

@@ -1,26 +1,29 @@
 const db = require("./bd");
 const express = require("express");
+const bodyParser = require("body-parser");
 
 const app = express();
-app.use(express.json());
 const port = 3000;
 
-app.get("/createGet", (req, res) => {
-  res.send("Got a GET request");
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+app.get("/create", urlencodedParser, (req, res) => {
+  console.log("get");
   function insertRow() {
-    const name = req.body.name;
-    const age = req.body.age;
-    const phone = req.body.phone;
-    const date = req.body.data;
+    const name = req.query.name;
+    const age = req.query.age;
+    const phone = req.query.phone;
+    const date = req.query.data;
     db.run(
       `INSERT INTO users (name, age, phone, date) VALUES (?, ?, ?, ?)`,
       [name, age, phone, date],
       function (error) {
         if (error) {
           console.error(error.message);
+          res.sendStatus(502);
         }
         console.log(`Inserted a row with the ID: ${this.lastID}`);
+        res.sendStatus(201);
       }
     );
   }
@@ -28,10 +31,8 @@ app.get("/createGet", (req, res) => {
   insertRow();
 });
 
-app.post("/createPost", function (req, res) {
-  res.send("Got a POST request");
-  const data = req.body;
-  console.log(data);
+app.post("/create", urlencodedParser, (req, res) => {
+  console.log("get");
   function insertRow() {
     const name = req.body.name;
     const age = req.body.age;
@@ -43,8 +44,10 @@ app.post("/createPost", function (req, res) {
       function (error) {
         if (error) {
           console.error(error.message);
+          res.sendStatus(502);
         }
         console.log(`Inserted a row with the ID: ${this.lastID}`);
+        res.sendStatus(201);
       }
     );
   }
