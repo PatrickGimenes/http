@@ -1,15 +1,20 @@
-const db = require("./db");
+const db = require("./bd");
 const express = require("express");
 
 const app = express();
+app.use(express.json());
 const port = 3000;
 
-app.get("/create", (req, res) => {
-  res.send("Hello World!");
+app.get("/createGet", (req, res) => {
+  res.send("Got a GET request");
+
   function insertRow() {
-    const [name, age, phone, date] = req.body;
+    const name = req.body.name;
+    const age = req.body.age;
+    const phone = req.body.phone;
+    const date = req.body.data;
     db.run(
-      `INSERT INTO users (name, age, phone, data) VALUES (?, ?, ?, ?)`,
+      `INSERT INTO users (name, age, phone, date) VALUES (?, ?, ?, ?)`,
       [name, age, phone, date],
       function (error) {
         if (error) {
@@ -23,13 +28,17 @@ app.get("/create", (req, res) => {
   insertRow();
 });
 
-app.post("/create", function (req, res) {
+app.post("/createPost", function (req, res) {
   res.send("Got a POST request");
-
+  const data = req.body;
+  console.log(data);
   function insertRow() {
-    const [name, age, phone, date] = req.body;
+    const name = req.body.name;
+    const age = req.body.age;
+    const phone = req.body.phone;
+    const date = req.body.data;
     db.run(
-      `INSERT INTO users (name, age, phone, data) VALUES (?, ?, ?, ?)`,
+      `INSERT INTO users (name, age, phone, date) VALUES (?, ?, ?, ?)`,
       [name, age, phone, date],
       function (error) {
         if (error) {
@@ -44,5 +53,5 @@ app.post("/create", function (req, res) {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Servidor rodando em http://127.0.0.1:${port}`);
 });
