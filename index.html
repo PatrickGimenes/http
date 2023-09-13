@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Atividade 8</title>
+  </head>
+  <body>
+    <form action="action_page.php" style="border: 1px solid #ccc">
+      <div class="container">
+        <p>Preencha os campos abaixo.</p>
+
+        <hr />
+        <label for="name"><b>Nome</b></label>
+        <input type="text" placeholder="Digite seu nome" name="name" required />
+
+        <label for="age"><b>Idade</b></label>
+        <input
+          type="text"
+          placeholder="Qual a sua idade?"
+          name="age"
+          required
+        />
+
+        <label for="phone"><b>Telefone</b></label>
+        <input
+          type="tel"
+          placeholder="Digite seu número de telefone"
+          name="phone"
+          required
+        />
+
+        <label for="birthday"><b>Data de Nascimento</b><br /></label>
+        <input
+          type="date"
+          placeholder="Digite sua data de nascimento"
+          name="birthday"
+          required
+        />
+
+        <div class="clearfix">
+          <button type="submit" class="getbtn">Salvar com GET</button>
+          <button type="submit" class="postbtn">Salvar com POST</button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
