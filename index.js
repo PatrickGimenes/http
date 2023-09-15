@@ -8,7 +8,7 @@ const port = 3000;
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.get("/create", urlencodedParser, (req, res) => {
-  console.log("get");
+  console.log("Dados salvos com GET");
   function insertRow() {
     const name = req.query.name;
     const age = req.query.age;
@@ -32,7 +32,7 @@ app.get("/create", urlencodedParser, (req, res) => {
 });
 
 app.post("/create", urlencodedParser, (req, res) => {
-  console.log("post");
+  console.log("Dados salvos com POST");
   function insertRow() {
     const name = req.body.name;
     const age = req.body.age;
