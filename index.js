@@ -1,58 +1,32 @@
-const db = require("./bd");
 const express = require("express");
 const bodyParser = require("body-parser");
+
+const saveData = require("./model/saveData");
 
 const app = express();
 const port = 3000;
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-app.get("/create", urlencodedParser, (req, res) => {
-  console.log("get");
-  function insertRow() {
-    const name = req.query.name;
-    const age = req.query.age;
-    const phone = req.query.phone;
-    const date = req.query.data;
-    db.run(
-      `INSERT INTO users (name, age, phone, date) VALUES (?, ?, ?, ?)`,
-      [name, age, phone, date],
-      function (error) {
-        if (error) {
-          console.error(error.message);
-          res.sendStatus(502);
-        }
-        console.log(`Inserted a row with the ID: ${this.lastID}`);
-        res.sendStatus(201);
-      }
-    );
-  }
+app.use(express.static(__dirname + "/views"));
 
-  insertRow();
+app.get("/create", urlencodedParser, (req, res) => {
+  const name = req.query.name;
+  const age = req.query.age;
+  const phone = req.query.phone;
+  const date = req.query.data;
+  saveData.insertRow(name, age, phone, date, res);
+  console.log("Dados salvos com GET");
 });
 
 app.post("/create", urlencodedParser, (req, res) => {
-  console.log("get");
-  function insertRow() {
-    const name = req.body.name;
-    const age = req.body.age;
-    const phone = req.body.phone;
-    const date = req.body.data;
-    db.run(
-      `INSERT INTO users (name, age, phone, date) VALUES (?, ?, ?, ?)`,
-      [name, age, phone, date],
-      function (error) {
-        if (error) {
-          console.error(error.message);
-          res.sendStatus(502);
-        }
-        console.log(`Inserted a row with the ID: ${this.lastID}`);
-        res.sendStatus(201);
-      }
-    );
-  }
+  const name = req.body.name;
+  const age = req.body.age;
+  const phone = req.body.phone;
+  const date = req.body.data;
 
-  insertRow();
+  saveData.insertRow(name, age, phone, date, res);
+  console.log("Dados salvos com POST");
 });
 
 app.listen(port, () => {

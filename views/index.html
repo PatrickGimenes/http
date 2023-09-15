@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
 
     <title>Atividade 8</title>
   </head>
@@ -46,15 +46,11 @@
         />
 
         <div class="clearfix">
-          <button type="submit" class="getbtn" id="getbtn">
-            Salvar com GET
-          </button>
-          <button type="submit" class="postbtn" id="postbtn">
-            Salvar com POST
-          </button>
+          <button class="getbtn" onclick="sendGet()">Salvar com GET</button>
+          <button class="postbtn" onclick="sendPost()">Salvar com POST</button>
         </div>
       </div>
     </form>
-    <script src="index.js"></script>
+    <script src="send.js"></script>
   </body>
 </html>
