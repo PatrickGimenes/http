@@ -1,11 +1,14 @@
-const db = require("./bd");
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
+const db = require("./bd");
 
 const app = express();
 const port = 3000;
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+app.use(express.static(__dirname + "/views"));
 
 app.get("/create", urlencodedParser, (req, res) => {
   console.log("Dados salvos com GET");
