@@ -32,7 +32,7 @@ app.get("/create", urlencodedParser, (req, res) => {
 });
 
 app.post("/create", urlencodedParser, (req, res) => {
-  console.log("get");
+  console.log("post");
   function insertRow() {
     const name = req.body.name;
     const age = req.body.age;
